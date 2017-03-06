@@ -31,11 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-<<<<<<< db5edc87094eca4c60e92be2ced05514219997b1
-=======
      python
      html
->>>>>>> dired_configuration
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -57,12 +54,8 @@ values."
      latex
      (colors :variables colors-enable-nyan-cat-progress-bar t)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-<<<<<<< db5edc87094eca4c60e92be2ced05514219997b1
-     python
-=======
      (chinese :package youdao-dictionary
               :variables chinese-enable-youdao-dict t)
->>>>>>> dired_configuration
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -256,8 +249,7 @@ values."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
    ;; If non nil show the titles of transient states. (default t)
-   dotspacemacs-show-transient-state-title t
-   ;; If non nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-title t ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
