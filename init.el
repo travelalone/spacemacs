@@ -31,6 +31,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+<<<<<<< db5edc87094eca4c60e92be2ced05514219997b1
+=======
+     python
+     html
+>>>>>>> dired_configuration
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -52,19 +57,27 @@ values."
      latex
      (colors :variables colors-enable-nyan-cat-progress-bar t)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+<<<<<<< db5edc87094eca4c60e92be2ced05514219997b1
      python
+=======
+     (chinese :package youdao-dictionary
+              :variables chinese-enable-youdao-dict t)
+>>>>>>> dired_configuration
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(cdlatex)
+   dotspacemacs-additional-packages '(cdlatex
+                                      diredful
+                                      dired-icon)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-                                    vi-tilde-fringe)
+                                    vi-tilde-fringe
+                                    evil-tutor)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -307,6 +320,9 @@ It is called immediately after `dotspacemacs/init', before layer configuration e
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (spacemacs/toggle-smartparens-globally-on)
+  (diredful-mode 1)
+  (add-hook 'dired-mode-hook 'dired-icon-mode)
+  (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
  "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
@@ -323,6 +339,7 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(exec-path-from-shell-arguments (quote ("-l")))
+ '(org-agenda-files (quote ("~/notes/org/love.org" "~/notes/org/tasks.org")))
  '(org-babel-load-languages
    (quote
     ((emacs-lisp . t)
