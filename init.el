@@ -8,8 +8,7 @@ You should not put any user code in this function besides modifying the variable
 values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For now available distributions are `spacemacs-base'
-   ;; or `spacemacs'. (default 'spacemacs)
+   ;; or `spacemacs'. 
    dotspacemacs-distribution 'spacemacs
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -31,6 +30,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     osx
      python
      html
      ;; ----------------------------------------------------------------
@@ -54,16 +54,16 @@ values."
      latex
      (colors :variables colors-enable-nyan-cat-progress-bar t)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-     (chinese :package youdao-dictionary
-              :variables chinese-enable-youdao-dict t)
+;;     (chinese :package youdao-dictionary
+;;              :variables chinese-enable-youdao-dict t)
      ;; version-control
+     haomiao
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(cdlatex
-                                      diredful
+   dotspacemacs-additional-packages '( diredful
                                       dired-icon)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -138,7 +138,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(material
+                         spacemacs-dark
                          spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -146,7 +147,7 @@ values."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
                                :size 16
-                               :weight ultra-light
+                               :weight regular
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
@@ -299,7 +300,7 @@ values."
         '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
-  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+  (load custom-file)
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration executes. This function is mostly useful for variables that need to be set before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
@@ -311,10 +312,11 @@ It is called immediately after `dotspacemacs/init', before layer configuration e
   (global-linum-mode t)
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
-  (spacemacs/toggle-smartparens-globally-on)
   (diredful-mode 1)
   (add-hook 'dired-mode-hook 'dired-icon-mode)
-  (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
+  (setq powerline-default-separator 'arrow)
+  (setq ns-use-srgb-colorspace nil)
+  (load custom-file)
  "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
@@ -325,25 +327,6 @@ you should place your code here."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(exec-path-from-shell-arguments (quote ("-l")))
- '(org-agenda-files (quote ("~/notes/org/love.org" "~/notes/org/tasks.org")))
- '(org-babel-load-languages
-   (quote
-    ((emacs-lisp . t)
-     (gnuplot . t)
-     (python . t)
-     (C . t))))
- '(package-selected-packages
-   (quote
-    (yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic xterm-color web-mode tagedit slim-mode shell-pop scss-mode sass-mode pug-mode multi-term less-css-mode helm-css-scss haml-mode eshell-z eshell-prompt-extras esh-help emmet-mode company-web web-completion-data cdlatex ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word company-statistics company-auctex column-enforce-mode color-identifiers-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+(load custom-file)
