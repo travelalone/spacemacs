@@ -44,7 +44,7 @@ values."
                       better-defaults-move-to-end-of-code-first t)
      emacs-lisp
      git
-     markdown
+;;     markdown
      org
      (shell :variables
              shell-default-height 30
@@ -70,7 +70,8 @@ values."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
                                     vi-tilde-fringe
-                                    evil-tutor)
+                                    evil-tutor
+                                    lorem-ipsum)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
