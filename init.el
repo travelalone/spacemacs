@@ -71,7 +71,8 @@ values."
    dotspacemacs-excluded-packages '(
                                     vi-tilde-fringe
                                     evil-tutor
-                                    lorem-ipsum)
+                                    lorem-ipsum
+                                    fancy-battery)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -318,6 +319,9 @@ It is called immediately after `dotspacemacs/init', before layer configuration e
   (setq powerline-default-separator 'arrow)
   (setq ns-use-srgb-colorspace nil)
   (load custom-file)
+  (setq dotspacemacs-elpa-https nil)
+
+
  "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
