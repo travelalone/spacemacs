@@ -30,6 +30,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     markdown
      osx
      python
      html
@@ -52,7 +53,8 @@ values."
      spell-checking
      syntax-checking
      latex
-     (colors :variables colors-enable-nyan-cat-progress-bar t)
+     (colors :variables colors-enable-nyan-cat-progress-bar t
+             colors-colorize-identifiers 'all)
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
 ;;     (chinese :package youdao-dictionary
 ;;              :variables chinese-enable-youdao-dict t)
@@ -72,7 +74,8 @@ values."
                                     vi-tilde-fringe
                                     evil-tutor
                                     lorem-ipsum
-                                    fancy-battery)
+                                    fancy-battery
+                                    auctex-latexmk)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -115,7 +118,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -311,7 +314,6 @@ It is called immediately after `dotspacemacs/init', before layer configuration e
 (defun dotspacemacs/user-config ()
   (setq-default evil-escape-key-sequence "kj")
   (setq-default evil-escape-delay 0.3)
-  (global-linum-mode t)
   (define-key evil-insert-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (define-key evil-motion-state-map (kbd "C-e") 'mwim-end-of-code-or-line)
   (diredful-mode 1)
@@ -320,8 +322,6 @@ It is called immediately after `dotspacemacs/init', before layer configuration e
   (setq ns-use-srgb-colorspace nil)
   (load custom-file)
   (setq dotspacemacs-elpa-https nil)
-
-
  "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
