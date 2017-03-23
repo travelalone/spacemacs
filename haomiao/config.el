@@ -8,8 +8,9 @@
 (setq-default TeX-engine 'luatex)
 (setq-default TeX-PDF-mode t)
 
-(require 'ox-publish)
-(add-to-list 'org-latex-classes '("ctexart" "\\documentclass[11pt]{ctexart}
+(with-eval-after-load 'org
+  (require 'ox-publish)
+  (add-to-list 'org-latex-classes '("ctexart" "\\documentclass[11pt]{ctexart}
                                         [NO-DEFAULT-PACKAGES]
                                         \\usepackage[utf8]{inputenc}
                                         \\usepackage[T1]{fontenc}
@@ -62,5 +63,6 @@
         "xelatex -interaction nonstopmode -output-directory %o %f"
         "rm -fr %b.out %b.log %b.tex auto"))
 
-(setq org-startup-truncated nil)
+(setq org-startup-truncated nil))
+
 (setq enable-dir-local-variables :safe)
